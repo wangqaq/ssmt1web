@@ -1,0 +1,10 @@
+.news-center-background{
+    background-color:#121824;
+    color: blanchedalmond;
+}
+.news-center-background>div{
+    width: 1000px; 
+    height: 500px;
+    margin-left: 35%;
+    word-break: break-all;word-wrap: break-word;
+}

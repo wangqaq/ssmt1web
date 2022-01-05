@@ -1,0 +1,23 @@
+.serviceitems{
+    width: 279px;
+}
+.abouthotel1{
+    height: 800px;
+    background-color: #121824
+}
+.about-hotel-inner{
+    width: 1000px; 
+    height: 500px;
+    margin-left: 35%;
+    word-break: break-all;word-wrap: break-word;
+}
+
+p{
+    margin-top: -15px;
+}
+.about-hotel-inner-title{
+    color: yellow;
+    font-size: 20px;
+    margin-bottom: 5%;
+    padding-top: 50px;
+}

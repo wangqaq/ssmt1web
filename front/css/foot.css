@@ -1,0 +1,22 @@
+.foot{
+    background-color: #0f1521;
+    color:white;
+    align-items: center;
+    height: 120px;
+}
+.picture{
+    display: flex;
+    align-items: center;
+}
+.marginleft{
+    margin-left: 5%;
+}
+.phonenumber{
+    width: 400px;
+    color: gold;
+    font-size: 20px;
+}
+.marginleft_1{
+    margin-left: 15%;
+    margin-top: 1%;
+}

@@ -1,0 +1,48 @@
+.title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#393D49;
+    color:white;
+}
+.logowithname{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FDF9D4;
+    color: black;
+    width:250px;
+    height: 100px;
+}
+.pic1{
+    margin-left: 1%;
+}
+.logo{
+    margin-left: 1%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.backgroundcolor{
+    background-color: #FCF8D3;
+}
+.fontcoclor{
+    color: blue;
+    font-size: 5px;
+}
+.layui-this > a {
+    background-color: #f581a4 !important;
+}
+.my-nav .layui-nav-item a {
+	color: #333333;
+}
+.my-nav .layui-nav-bar, .my-nav .layui-nav-itemed:after, .my-nav .layui-this:after {
+	background-color: #9966CC;
+}
+.my-nav .layui-this a, .my-nav .layui-nav-item a:hover {
+	color: #000000;
+}
+.my-nav {
+	background-color: #FCF8D3;
+}

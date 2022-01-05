@@ -1,0 +1,204 @@
+img{
+    outline-width:0px;
+    vertical-align:top;
+    width: calc(100%-100px);
+}
+.newsdetails{ 
+    list-style: none;
+    height: 54px;
+    text-align: center;
+}
+p{
+    text-indent: 50px;
+    line-height: 50px;
+    font-size: 13px;
+    color: white;
+}
+.hoteltitle{
+    position: absolute;
+    margin-top: 10%;
+    margin-left: 35%;
+    height: 150px;
+    width: 600px;
+    background-color:rgba(87,69,109, 0.5);
+    color: gold;
+}
+.flexabsolute{  
+    display: flex;
+    position: absolute;
+    margin-left: 15%;
+}
+.newscenter{
+    width: 250px;
+    height: 600px;
+    background-color: rgba(87,69,109, 0.5);
+    margin-top: -100px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+}
+.callline{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -30%;
+    margin-bottom: 5%;
+}
+.newscentertitle{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+}
+.serviceproject{
+    margin-left: 35%;
+    margin-top: -6%;
+    width: 1000px;
+    height: 300px;
+}
+.abouthotel{
+    margin-top: -18.5%;
+    margin-left: 35%;
+    background-color: rgba(87,69,109, 0.5);
+}
+.abouthoteltitle{
+    font-size: 20px;
+    margin-top: 5%;
+    margin-left: 5%;
+    color: goldenrod;
+}
+.services{
+    display: flex;
+    justify-content: space-around;
+}
+.onbackletter{
+    position:absolute;
+    margin-left: 15%;
+    font-size: 150px;
+    margin-top: -20px;
+    color: rgba(230,202,139, 0.5);
+}
+.servicename{
+    position: absolute;
+    margin-left: 10%;
+    font-size: 20px;
+    color: gold;
+    margin-left: 5%;
+    margin-top: 20px;
+}
+.servicenglishname{
+    position: absolute;
+    margin-top: 50px;
+    font-size: 10px;
+    margin-left: 45px;
+}
+.serviceitems{
+    left: 5%;
+    margin-top: 1%;
+    width: 1200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+.serviceitems:nth-child(1){
+    margin-left: 30%;
+}
+#serviceli li{
+    display: inline;
+    margin-left:3%;
+    border-radius: 10px;
+}
+#serviceli{
+    font-size: 20px;
+}
+.servicetitle{
+    margin-bottom: 20%;
+    font-size: 50px;
+    color:crimson;
+    font-weight: 20px;
+}
+.servicetitle a:hover{
+    color: cornflowerblue;
+}
+#div1{
+
+    width: 712px;
+    
+    height: 108px;
+    
+    margin: 100px auto;
+    
+    position: relative;
+    
+    overflow: hidden;
+    
+    }
+    
+    #div1 ul{
+    
+    position:absolute;
+    
+    left: 0;
+    
+    top: 0;
+    
+    }
+    
+    #div1 ul li {
+    
+    float: left;
+    
+    width: 178px;
+    
+    height: 108px;
+    
+    list-style: none;
+    
+    margin-left: 10px;
+    
+    }
+#contantus{
+    display: flex;
+    justify-content: space-between;
+}
+#waytocontantus{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: -48%;
+    background-color: rgba(128, 128, 128,0.5);
+    width: 27%;
+    margin-top: 10%;
+}
+.serviceicon{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    width: 800px;
+    height: 300px;
+    margin-left: -20%;
+    margin-top: 5%;
+}
+.onlineorder{
+    color: khaki;
+    margin-top: -30%;
+    font-size: 30px;
+    margin-left: -10%;
+}
+.service-icon-flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.newscenter1{
+    z-index: 1;
+}

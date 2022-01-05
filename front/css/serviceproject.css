@@ -1,0 +1,22 @@
+.service-project{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+    width: 1300px;
+    margin-left: 30%;
+}
+.service-project-background{
+    background-color:#121824;
+}
+.service-project>div{
+    padding: 20px;
+    color: cornsilk;
+    margin-left: 5%;
+    margin-top: 3%;
+    margin-bottom: 10px;
+}
+#service-project-detail{
+    border-bottom: solid 1px rgb(230, 230, 230);
+    border-left: solid 1px rgb(230, 230, 230);
+    border-right: solid 1px rgb(230, 230, 230);
+}

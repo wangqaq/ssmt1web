@@ -1,0 +1,12 @@
+#middle{
+    background-color: #121824;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form{
+    height: 300px;
+    width: 500px;
+    background-color: white;
+}

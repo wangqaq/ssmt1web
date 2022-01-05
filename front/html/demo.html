@@ -1,0 +1,169 @@
+﻿<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.5.0.min.js"></script>
+</head>
+<style>
+  	
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+    div{
+        width: 1226px;
+        height: 460px;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0; 
+    }
+    img{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    #myimg{
+        opacity: 0;
+    }
+    #left,#right{
+        position: absolute;
+        top: 195px;
+        margin: 0px;  
+        width: 41px;
+        height: 69px;
+        background-image: url(./images/arrow.png);
+        background-color:rgba(0,0,0,0);
+        cursor: pointer;
+    }
+    #left{
+        background-position: -83px 0px;
+    }
+    #left:hover{
+        background-position: 0px 0px;
+    }
+    #right{
+        left: auto;
+        background-position: -124px 0px;
+    }
+    #right:hover{
+        background-position: -41px 0px;
+    }
+    #point{
+        width: 100px;
+        height: 10px;
+        position: absolute;
+        left: auto;
+        top: auto;
+        right: 30px;
+        bottom: 20px;
+    }
+    #point ul li{
+        width: 6px;
+        height: 6px;
+        border: 2px solid #fff;
+        border-color: hsla(0,0%,100%,.3);
+        border-radius: 10px;
+        list-style: none;
+        background: rgba(0,0,0,.4);
+        margin:0 5px;
+        float: left;
+        cursor: pointer;
+    }
+</style>
+<body>
+    <div id="did">
+        <img id="myImg" src="../pic/01_6dzw.jpg" alt="">
+        <img id="myimg" src="../pic/02_ruze.jpg" alt="">
+        <img id="myimg" src="../pic/03_ad6p (1).jpg" alt="">
+        <img id="myimg" src="../pic/04_6rdd.jpg" alt="">
+        
+        <div class="arrow" id="left"></div>
+        <div class="arrow" id="right"> </div>
+      
+        <div id="point">
+            <ul id="uid"><li></li><li></li><li></li><li></li></ul> 
+        </div>
+    </div>
+</body>
+<script>
+    var index = 0; 
+    doStart();// 默认开启
+
+    // 自动轮播效果
+    function doStart(){
+        myTime = setInterval(function(){
+            //让上一张淡出
+            imgOut(index);
+            index = ++index%4;
+            //让下一张淡入
+            imgIn(index);
+        },3000); 
+    }
+     
+    // 鼠标移入暂停轮播;移出继续
+    $("#did").mouseover(function(){
+        clearInterval(myTime);
+    }).mouseout(function(){
+        doStart();
+    });
+  
+    // 右箭头单击事件
+    $("#right").click(function(){
+ 
+        //让上一张淡出
+        imgOut(index);
+        index = ++index%4;
+        //让下一张淡入
+        imgIn(index); 
+    });
+  
+    // 左箭头单击事件
+    $("#left").click(function(){
+
+        //让上一张淡出
+        imgOut(index);
+        index--;
+        if(index < 0){
+            index = 3;
+        }
+        //让下一张淡入
+        imgIn(index);
+    });
+                      
+    // 灰点事件
+    $("li").mouseover(function(){// 鼠标移入
+        dotIn(this);
+    }).mouseout(function(){// 鼠标移出
+        dotOut(this);    
+    }).click(function(){// 单击
+        // 不同的灰点单击才变换
+        if(index !=  $(this).index()){
+            imgOut(index);// 当前的淡出
+            index = $(this).index();
+            imgIn(index);// 小圆点对应的淡入
+        }
+    });
+    // 图片淡入
+    function imgIn(num){
+        $("img").eq(num).animate({"opacity":1},1000);
+        dotIn( $("li").eq(num));// 对应灰点亮起
+    }
+    // 图片淡出
+    function imgOut(num){
+        $("img").eq(num).animate({"opacity":0},1000);
+        dotOut( $("li").eq(num));// 对应灰点暗去
+    }
+    // 小灰点亮
+    function dotIn(dot){
+        $(dot).css({"background":"hsla(0,0%,100%,.4)","borderColor":"rgba(0,0,0,0.4)"});
+    }
+    // 小灰点暗
+    function dotOut(dot){
+        $(dot).css({"background":"rgba(0,0,0,.4)","borderColor":"hsla(0,0%,100%,.3)"});
+    }
+</script>
+</html>
