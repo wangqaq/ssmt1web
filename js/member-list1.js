@@ -26,20 +26,22 @@ layui.use('table', function () {
             });
         } else if (obj.event === 'edit') {
             sessionStorage.setItem("userId", data.id);
-            xadmin.open('编辑', 'member-edit.html', 600, 400);
+            xadmin.open('编辑', 'member-edit.html', 800, 650);
         }
 
     });
     page();
+    //模糊查询
     form.on('submit(search)',
         function (data) {
             page(data.field);
             return false;
         });
 
+    //启用停用
     form.on('switch(enableDemo)', function () {
-        let data={
-            id:this.value
+        let data = {
+            id: this.value
         };
 
         $.ajax({
@@ -53,12 +55,37 @@ layui.use('table', function () {
         });
     });
 
+
+    //批量删除
+    $(".delAll_btn").click(function () {
+        let checkStatus = table.checkStatus('userList'),
+            data = checkStatus.data,
+            userId = "";
+        if (data.length > 0) {
+            for (let i in data) {
+                userId += data[i].id + ",";
+            }
+            console.log(userId);
+            layer.confirm('确定删除选中的用户？', {icon: 3, title: '提示信息'}, function (index) {
+                $.post('/api/user/delAllUser', {ids: userId}, function (data) {
+                                layer.msg(data.msg);
+                                layer.close(index);
+                                xadmin.father_reload();
+                            });
+            })
+        } else {
+            layer.msg("请选择需要删除的用户");
+        }
+    });
+
+    //layui  end！
 });
-function openImg(data){
+
+//查看图片
+function openImg(data) {
     sessionStorage.setItem("picShow", data.img);
     xadmin.open("图片", '../pic.html', 400, 450);
 }
-
 
 function page(data) {
     layui.use('table', function () {
@@ -71,15 +98,17 @@ function page(data) {
             , cellMinWidth: 80
             , where: data
             , page: true
+            , id: "userList"
             , cols: [[
-                {field: 'id', width: 80, title: 'ID', sort: true}
-                , {field: 'username', width: 180, title: '用户名'}
-                , {field: 'sex', width: 80, title: '性别', sort: true}
-                , {field: 'phone', width: 150, title: '电话'}
-                , {field: 'birthday', title: '生日', width: 180, minWidth: 100, sort: true}
+                {type: 'checkbox'}
+                , {field: 'id', title: 'ID', sort: true}
+                , {field: 'username',title: '用户名'}
+                , {field: 'sex', title: '性别', sort: true}
+                , {field: 'phone', title: '电话'}
+                , {field: 'birthday', title: '生日', minWidth: 100, sort: true}
                 , {field: 'hobby', title: '爱好', sort: true}
                 , {
-                    field: 'img', title: '图片', width: 130, style: 'height:100px;padding:0',
+                    field: 'img', title: '图片',
                     templet: function (data) {
                         let html = "";
                         if (data.img != null) {
@@ -90,7 +119,7 @@ function page(data) {
                         return html;
                     }
                 }
-                , {field: 'enable', title: '状态', templet: '#switchTpl', sort: true}
+                , {field: 'enable', title: '状态', templet: '#switchTpl', sort: true,width:100}
                 , {fixed: 'right', title: '操作', width: 200, align: 'center', toolbar: '#barDemo'}
             ]]
         });

@@ -54,3 +54,16 @@ layui.use(['form', 'layer', 'jquery', 'laydate'],
             });
 
     });
+$(function load() {
+    let i =(Math.random()*10).toFixed(6);
+    $("#username").val(randomString(5)+i)
+});
+
+function randomString(e) {
+    e = e || 32;
+    var t = "ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz",
+        a = t.length,
+        n = "";
+    for (i = 0; i < e; i++) n += t.charAt(Math.floor(Math.random() * a));
+    return n
+}
