@@ -50,7 +50,7 @@ function loadList(data){
                 ,{field: 'publishTime', width: 145, title: '发布时间'}
                 , {field: 'callBack', title: '回复', sort: true}
                 ,{field: 'callBackTime', width: 145, title: '回复时间'}
-                , {field: 'enable', title: '状态', templet: '#switchTpl',width:90}
+                , {field: 'enable', title: '状态', templet: '#switchTpl',width:100}
                 , {fixed: 'right', title: '操作', width: 200, align: 'center', toolbar: '#barDemo'}
             ]]
         });

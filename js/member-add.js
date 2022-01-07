@@ -30,26 +30,27 @@ layui.use(['form', 'layer', 'jquery', 'laydate'],
                      arr.push($(this).attr("title")) ;
                 });
                 data.hobby =arr.toLocaleString();
+                if(data.birthday==""){
+                    layer.msg("请选择生日");
+                }else{
+                    let res = myAjax("/api/user/add", data,'get');
+                    if (res != undefined && res.code == 0) {
+                        layer.alert("增加成功", {
+                                icon: 6
+                            },
+                            function () {
+                                //关闭当前frame
 
-                let res = myAjax("/api/user/add", data,'get');
+                                xadmin.close();
 
-                if (res != undefined && res.code == 0) {
-                    layer.alert("增加成功", {
-                            icon: 6
-                        },
-                        function () {
-                            //关闭当前frame
+                                // 可以对父窗口进行刷新
+                                xadmin.father_reload();
 
-                            xadmin.close();
-
-                            // 可以对父窗口进行刷新
-                            xadmin.father_reload();
-
-                        });
-                } else {
-                    layer.alert("增加失败");
+                            });
+                    } else {
+                        layer.alert("增加失败");
+                    }
                 }
-
                 return false;
             });
 
