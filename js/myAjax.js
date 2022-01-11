@@ -1,6 +1,6 @@
-$(function () {
+$(function (data) {
     let loginName = sessionStorage.getItem("loginName");
-    if (loginName == null) {
+    if (loginName==null) {
     }
 });
 

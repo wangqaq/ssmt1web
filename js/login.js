@@ -17,7 +17,9 @@ $(function () {
                         }
                         if (data.data === "error") {
                             layer.msg("用户名或密码错误");
-                        }
+                        }if (data.code===1){
+                            layer.msg(data.message);
+                    }
                         if (data.data === "登陆成功") {
                             layer.msg('登陆成功，即将跳转到后台管理页面', function () {
                                 sessionStorage.setItem("loginName",username);
