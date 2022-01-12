@@ -32,6 +32,7 @@ layui.use(['form', 'upload','layer', 'jquery', 'laydate','layedit'],
                 data.hobby =arr.toLocaleString();
                 data.id=sessionStorage.getItem("userId");
                 data.text = layedit.getContent(index);
+                console.log(data);
                 let res = myAjax("/api/user/update", data);
 
                 if (res != undefined && res.count == 1) {
@@ -69,10 +70,11 @@ layui.use(['form', 'upload','layer', 'jquery', 'laydate','layedit'],
                 layer.msg('上传中', {icon: 16, time: 0});
             }
             ,done: function(res){
-                if(res.code !== 0){
-                    return layer.msg('上传失败');
+                console.log(res);
+                if(res.code === 0){
+                    return layer.msg('上传成功');
                 }
-                layer.msg("上传成功");
+                layer.msg("上传失败");
             }
             ,error: function(){
                 let demoText = $('#demoText');
