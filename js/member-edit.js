@@ -49,7 +49,7 @@ layui.use(['form', 'upload','layer', 'jquery', 'laydate','layedit'],
 
                         });
                 } else {
-                    layer.alert("更新失败");
+                    layer.alert("啊哦，更新失败了！");
                 }
 
                 return false;
