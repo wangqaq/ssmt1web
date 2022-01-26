@@ -7,6 +7,9 @@ $(function (data) {
 function myAjax(url, data, type, async) {
     let res = {};
     $.ajax({
+        headers:{
+            "Authorization":sessionStorage.getItem("tokenHeader")+" "+sessionStorage.getItem("access_token"),
+        },
         url: url,
         type: type == null ? 'post' : 'get',
         data: data,

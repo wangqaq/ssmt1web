@@ -180,6 +180,7 @@
             r[l.pageName] = e, r[l.limitName] = a.limit;
             var d = t.extend(r, a.where);
             a.contentType && 0 == a.contentType.indexOf("application/json") && (d = JSON.stringify(d)), t.ajax({
+
                 crossDomain:true,
                 type: a.method || "get",
                 url: a.url,

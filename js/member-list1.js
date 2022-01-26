@@ -1,5 +1,5 @@
 $(function load() {
-
+    console.log("session的"+sessionStorage.getItem("tokenHeader")+" "+sessionStorage.getItem("access_token"));
 });
 layui.use('table', function () {
     let table = layui.table,
@@ -94,6 +94,9 @@ function page(data) {
         table.render({
             elem: '#test'
             , url: '/api/user/findAll'
+            ,headers:{
+                "Authorization":sessionStorage.getItem("tokenHeader")+" "+sessionStorage.getItem("access_token"),
+            }
             , method: 'get'
             , cellMinWidth: 80
             , where: data

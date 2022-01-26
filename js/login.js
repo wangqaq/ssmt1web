@@ -5,6 +5,9 @@ $(function () {
 
             let username = data.field.username;
             $.ajax({
+                headers:{
+                    "Authorization":sessionStorage.getItem("tokenHeader")+" "+sessionStorage.getItem("access_token"),
+                },
                 url: '/api/user/login',
                 data: JSON.stringify(data.field),
                 contentType: "application/json;charset=UTF-8",
@@ -12,17 +15,19 @@ $(function () {
                 dataType: 'json',
                 success: function (data) {
                     console.log(data);
-                        if (data.data === "codeErr") {
+                        if (data.code === 401) {
                             layer.msg("验证码错误");
                         }
-                        if (data.data === "error") {
-                            layer.msg("用户名或密码错误");
+                        if (data.code === 400) {
+                            layer.msg(data.message);
                         }if (data.code===1){
                             layer.msg(data.message);
                     }
-                        if (data.data === "登陆成功") {
+                        if (data.code === 0) {
                             layer.msg('登陆成功，即将跳转到后台管理页面', function () {
                                 sessionStorage.setItem("loginName",username);
+                                sessionStorage.setItem("tokenHeader",data.data.tokenHead);
+                                sessionStorage.setItem("access_token",data.data.access_token);
                                 location.href = 'index.html';
                             });
                         }
