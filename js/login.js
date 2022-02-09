@@ -5,9 +5,6 @@ $(function () {
 
             let username = data.field.username;
             $.ajax({
-                headers:{
-                    "Authorization":sessionStorage.getItem("tokenHeader")+" "+sessionStorage.getItem("access_token"),
-                },
                 url: '/api/user/login',
                 data: JSON.stringify(data.field),
                 contentType: "application/json;charset=UTF-8",

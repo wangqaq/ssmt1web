@@ -1,5 +1,4 @@
 $(function load() {
-    console.log("session的"+sessionStorage.getItem("tokenHeader")+" "+sessionStorage.getItem("access_token"));
 });
 layui.use('table', function () {
     let table = layui.table,
@@ -43,18 +42,16 @@ layui.use('table', function () {
         let data = {
             id: this.value
         };
-
-        $.ajax({
-            url: "/api/user/enable",
-            type: 'get',
-            data: data,
-            // async: false,
-            dataType: 'json',
-            success: function (data) {
-            }
-        });
+        let i = myAjax("/api/user/enable",data,'get',false);
+        if (i.code===0){
+            layer.msg("提交成功");
+        }else{
+            layer.msg(data.msg);
+        }
     });
-
+function refresh(){
+    xadmin.father_reload()
+}
 
     //批量删除
     $(".delAll_btn").click(function () {
@@ -67,11 +64,15 @@ layui.use('table', function () {
             }
             console.log(userId);
             layer.confirm('确定删除选中的用户？', {icon: 3, title: '提示信息'}, function (index) {
-                $.post('/api/user/delAllUser', {ids: userId}, function (data) {
-                                layer.msg(data.msg);
-                                layer.close(index);
-                                xadmin.father_reload();
-                            });
+                let data = myAjax("/api/user/delAllUser", {ids: userId});
+                if (data.code === 0) {
+                    layer.msg(data.message);
+                    layer.close(index);
+                    setTimeout(refresh,2000);
+
+                } else {
+                    layer.msg(data.message);
+                }
             })
         } else {
             layer.msg("请选择需要删除的用户");
@@ -94,9 +95,6 @@ function page(data) {
         table.render({
             elem: '#test'
             , url: '/api/user/findAll'
-            ,headers:{
-                "Authorization":sessionStorage.getItem("tokenHeader")+" "+sessionStorage.getItem("access_token"),
-            }
             , method: 'get'
             , cellMinWidth: 80
             , where: data
@@ -105,7 +103,7 @@ function page(data) {
             , cols: [[
                 {type: 'checkbox'}
                 , {field: 'id', title: 'ID', sort: true}
-                , {field: 'username',title: '用户名'}
+                , {field: 'username', title: '用户名'}
                 , {field: 'sex', title: '性别', sort: true}
                 , {field: 'phone', title: '电话'}
                 , {field: 'birthday', title: '生日', minWidth: 100, sort: true}
@@ -122,7 +120,7 @@ function page(data) {
                         return html;
                     }
                 }
-                , {field: 'enable', title: '状态', templet: '#switchTpl', sort: true,width:100}
+                , {field: 'enable', title: '状态', templet: '#switchTpl', sort: true, width: 100}
                 , {fixed: 'right', title: '操作', width: 200, align: 'center', toolbar: '#barDemo'}
             ]]
         });

@@ -180,14 +180,15 @@
             r[l.pageName] = e, r[l.limitName] = a.limit;
             var d = t.extend(r, a.where);
             a.contentType && 0 == a.contentType.indexOf("application/json") && (d = JSON.stringify(d)), t.ajax({
-
                 crossDomain:true,
                 type: a.method || "get",
                 url: a.url,
                 contentType: a.contentType,
                 data: d,
                 dataType: "json",
-                headers: a.headers || {},
+                headers: a.headers || {
+                    "Authorization":sessionStorage.getItem("tokenHeader")+" "+sessionStorage.getItem("access_token"),
+                },
                 success: function (t) {
                     "function" == typeof a.parseData && (t = a.parseData(t) || t), t[n.statusName] != n.statusCode ? (i.renderForm(), i.layMain.html('<div class="' + f + '">' + (t[n.msgName] || "返回的数据不符合规范，正确的成功状态码 (" + n.statusName + ") 应为：" + n.statusCode) + "</div>")) : (i.renderData(t, e, t[n.countName]), o(), a.time = (new Date).getTime() - i.startTime + " ms"), i.setColsWidth(), "function" == typeof a.done && a.done(t, e, t[n.countName])
                 },
