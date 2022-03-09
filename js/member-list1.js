@@ -14,7 +14,7 @@ layui.use('table', function () {
             }
         } else if (obj.event === 'del') {
             layer.confirm('真的删除行么', function (index) {
-                let res = myAjax("/api/user/delete", {id: data.id});
+                let res = myAjax("/api/user/delete", {id: data.id},1);
                 if (res.code === 0) {
                     obj.del();
                     layer.close(index);

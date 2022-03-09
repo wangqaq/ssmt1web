@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>注册</title>
+    <link rel="stylesheet" href="X-admin/lib/layui/css/layui.css">
+    <script src="X-admin/lib/layui/layui.js"></script>
+    <script src="js/myAjax.js"></script>
+    <script src="js/register.js"></script>
+</head>
+<body>
+<div class="login-main">
+    <header class="layui-elip" style="width: 85%">注册</header>
+    <form class="layui-form">
+        <!--输入用户名-->
+        <div class="layui-input-inline">
+            <div class="layui-inline" style="width: 85%">
+                <input type="text" name="uname" id="uname" required  lay-verify="required" placeholder="用户名" autocomplete="off" class="layui-input">
+            </div>
+            <!--判断用户名是否可用的图标 -->
+            <div class="layui-inline">
+                <i class="layui-icon" hidden id="ri" style="color: green; font-weight: bold"></i>
+                <i class="layui-icon" hidden id="le" style="color: red; font-weight: bold">ဆ</i>
+            </div>
+        </div>
+        <!--输入密码-->
+        <div class="layui-input-inline">
+            <div class="layui-inline" style="width: 85%">
+                <input type="password" name="uname" id="pwd" required  lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input">
+            </div>
+
+        </div>
+        <div class="layui-input-inline login-btn" style="width: 85%">
+            <button type="submit" lay-submit lay-filter="sub" class="layui-btn" lay->注册</button>
+        </div>
+        <br/>
+        <p style="width: 85%">
+            <a href="/login.html" class="fl">已有账号？立即登录</a>
+        </p>
+    </form>
+</div>
+<script type="text/javascript">
+    layui.use(['form', 'layer','jquery'], function () {
+        var form  = layui.form;
+        var $  = layui.jquery;
+        form.on('submit(sub)',function () {
+            let i = myAjax("/api/user/register",{username:$('#uname').val(),password:$('#pwd').val()})
+                    if (i.code===0){
+                        layer.msg('注册成功')
+                    }else{
+                        layer.msg('注册失败')
+                    }
+
+            //防止页面跳转
+            return false;
+        });
+
+    });
+</script>
+</body>
+</html>

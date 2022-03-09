@@ -39,6 +39,9 @@ $(function () {
         type: "get",
         data: {id:id},
         dataType: 'json',
+        headers:{
+            "Authorization":sessionStorage.getItem("tokenHeader")+" "+sessionStorage.getItem("access_token"),
+        },
         success: function (data) {
             console.log(data);
             if (data.code===0){

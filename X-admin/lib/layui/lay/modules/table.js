@@ -58,7 +58,7 @@
         }, a.request), a.response = t.extend({
             statusName: "code",
             statusCode: 0,
-            msgName: "msg",
+            msgName: "message",
             dataName: "data",
             countName: "count"
         }, a.response), "object" == typeof a.page && (a.limit = a.page.limit || a.limit, a.limits = a.page.limits || a.limits, e.page = a.page.curr = a.page.curr || 1, delete a.page.elem, delete a.page.jump), !a.elem[0]) return e;
@@ -190,7 +190,7 @@
                     "Authorization":sessionStorage.getItem("tokenHeader")+" "+sessionStorage.getItem("access_token"),
                 },
                 success: function (t) {
-                    "function" == typeof a.parseData && (t = a.parseData(t) || t), t[n.statusName] != n.statusCode ? (i.renderForm(), i.layMain.html('<div class="' + f + '">' + (t[n.msgName] || "返回的数据不符合规范，正确的成功状态码 (" + n.statusName + ") 应为：" + n.statusCode) + "</div>")) : (i.renderData(t, e, t[n.countName]), o(), a.time = (new Date).getTime() - i.startTime + " ms"), i.setColsWidth(), "function" == typeof a.done && a.done(t, e, t[n.countName])
+                    "function" == typeof a.parseData && (t = a.parseData(t) || t), t[n.statusName] !== n.statusCode ? (i.renderForm(), i.layMain.html('<div class="' + f + '">' + ("状态码为: "+t[n.statusName]+" 消息为："+t[n.msgName] || "返回的数据不符合规范，正确的成功状态码 (" + n.statusName + ") 应为：" + n.statusCode) + "</div>")) : (i.renderData(t, e, t[n.countName]), o(), a.time = (new Date).getTime() - i.startTime + " ms"), i.setColsWidth(), "function" == typeof a.done && a.done(t, e, t[n.countName])
                 },
                 error: function (e, t) {
                     i.layMain.html('<div class="' + f + '">数据接口请求异常：' + t + "</div>"), i.renderForm(), i.setColsWidth()

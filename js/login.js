@@ -5,7 +5,7 @@ $(function () {
 
             let username = data.field.username;
             $.ajax({
-                url: '/api/user/login',
+                url: '/api/auth/login',
                 data: JSON.stringify(data.field),
                 contentType: "application/json;charset=UTF-8",
                 type: 'post',
@@ -34,6 +34,9 @@ $(function () {
         });
     });
 });
+function register(){
+    window.location.href="../register.html"
+}
 
 function freshCode(obj) {
     let date = new Date();

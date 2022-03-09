@@ -2,5 +2,6 @@ $(function () {
     $("#loginIndexName").html(sessionStorage.getItem("loginName"));
 });
 function loginOut() {
-    sessionStorage.setItem("loginName","");
+    sessionStorage.setItem("access_token","");
+    sessionStorage.setItem("tokenHeader","");
 }
