@@ -1,17 +1,26 @@
-layui.use(['form', 'upload','layer', 'jquery'],
+layui.use(['form', 'upload','layer', 'jquery','laydate','layedit'],
     function () {
         $ = layui.jquery;
         var form = layui.form
             , layer = layui.layer
-            ,upload = layui.upload;
+            ,upload = layui.upload
+            , laydate = layui.laydate,
+            layedit = layui.layedit;
 
+        layedit.set({
+            //默认post
+            uploadImage: {
+                url: '/api/picture/upload/type=front/id='+sessionStorage.getItem("id") //接口url
+            }
+        });
+        index=layedit.build('demo'); //建立编辑器
         //监听提交
         form.on('submit(edit)',
             function (data) {
                 data = data.field;
                 data.id=sessionStorage.getItem("id");
                 data.src=sessionStorage.getItem("img");
-                data.detail = $("#textarea").val();
+                data.detail=layedit.getContent(index);
                 console.log(data);
                 let res = myAjax("/api/product/update", data);
                 if (res != undefined && res.count == 1) {
@@ -20,12 +29,9 @@ layui.use(['form', 'upload','layer', 'jquery'],
                         },
                         function () {
                             //关闭当前frame
-
                             xadmin.close();
-
                             // 可以对父窗口进行刷新
                             xadmin.father_reload();
-
                         });
                 } else {
                     layer.alert("更新失败");
@@ -33,16 +39,28 @@ layui.use(['form', 'upload','layer', 'jquery'],
 
                 return false;
             });
+        $(function () {
+            let id = sessionStorage.getItem("id");
+            let res = myAjax("/api/product/findById", {id: id}, 'get');
+//   将查询出来的数据进行赋值填充
+            setData(res.data);
+        });
+
+        //赋值
+        function setData(data) {
+            $("#infName").val(data.name);
+            $("#infImg").val(data.imgHref);
+            $("#infLink").val(data.infLink);
+            $("#price").val(data.normalPrice);
+            layedit.setContent(index,data.detail);
+            $('input:radio[name=enable][value=' + data.enable + ']').attr("checked", true);
+            layui.form.render();
+
+        }
 
     });
-$(function () {
-    let id = sessionStorage.getItem("id");
-    let res = myAjax("/api/product/findById", {id: id}, 'get');
-//   将查询出来的数据进行赋值填充
-    setData(res.data);
-});
 
-layui.use(['form', 'upload','layer', 'jquery', 'laydate'],function () {
+layui.use(['form', 'upload','layer', 'jquery','laydate','layedit'],function () {
     $ = layui.jquery;
     let form = layui.form
         , layer = layui.layer
@@ -85,14 +103,4 @@ layui.use(['form', 'upload','layer', 'jquery', 'laydate'],function () {
 //常规使用 - 普通图片上传
 
 
-//赋值
-function setData(data) {
-    $("#infName").val(data.name);
-    $("#infImg").val(data.imgHref);
-    $("#infLink").val(data.infLink);
-    $("#price").val(data.normalPrice);
-    $("#textarea").val(data.detail);
-    $('input:radio[name=enable][value=' + data.enable + ']').attr("checked", true);
-    layui.form.render();
 
-}
