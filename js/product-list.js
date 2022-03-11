@@ -64,7 +64,7 @@ function page(data) {
                         console.log(data);
                         let html = "";
                         if (data.imgHref != null) {
-                            html = "<img alt='图片' src='../front" + data.imgHref + "' style='height: 30px; width: 30px;' onclick=''/>";
+                            html = "<img alt='图片' src='../upload" + data.imgHref + "' style='height: 30px; width: 30px;' onclick=''/>";
                         } else {
                             html = "<i class=\"layui-icon layui-icon-face-cry\" style=\"font-size: 25px; color: #ff0008;\"></i>";
                         }

@@ -14,9 +14,8 @@ function getServiceProject() {
 }
 
 function detail(data) {
-
     sessionStorage.setItem("id",data);
-    window.location.href="/front/html/detail.html";
+    window.location.href="detail.html";
 }
 function setservceProject(data) {
     console.log(data);

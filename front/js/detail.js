@@ -4,6 +4,7 @@ $(function load() {
 
 function getDetail(data) {
     let i = sessionStorage.getItem("id");
+    console.log(i);
     let res = myAjax("/front/product/FindById", {id: i}, "get");
     setData(res.data);
 }

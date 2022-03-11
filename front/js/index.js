@@ -13,7 +13,6 @@ function getServiceProject() {
     });
 }
 function detail(data) {
-
     sessionStorage.setItem("id",data.id);
 }
 function setServiceProject(data) {

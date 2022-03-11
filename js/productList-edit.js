@@ -10,6 +10,9 @@ layui.use(['form', 'upload','layer', 'jquery'],
             function (data) {
                 data = data.field;
                 data.id=sessionStorage.getItem("id");
+                data.src=sessionStorage.getItem("img");
+                data.detail = $("#textarea").val();
+                console.log(data);
                 let res = myAjax("/api/product/update", data);
                 if (res != undefined && res.count == 1) {
                     layer.alert("更新成功", {
@@ -39,16 +42,14 @@ $(function () {
     setData(res.data);
 });
 
-
 layui.use(['form', 'upload','layer', 'jquery', 'laydate'],function () {
     $ = layui.jquery;
     let form = layui.form
         , layer = layui.layer
         ,upload = layui.upload;
-
     let uploadInst = upload.render({
         elem: '#uploadPic'
-        ,url: '/upload'
+        ,url: '/api/picture/upload/type=front/id='+sessionStorage.getItem("id")
         ,data:{id:""+sessionStorage.getItem("id")+""}
         ,before: function(obj){
             //预读本地文件示例，不支持ie8
@@ -62,6 +63,8 @@ layui.use(['form', 'upload','layer', 'jquery', 'laydate'],function () {
                 return layer.msg('上传失败');
             }
             layer.msg("上传成功");
+            sessionStorage.setItem("img",res.data.src);
+            console.log(sessionStorage.getItem("img"));
         }
         ,error: function(){
             var demoText = $('#demoText');
@@ -84,7 +87,6 @@ layui.use(['form', 'upload','layer', 'jquery', 'laydate'],function () {
 
 //赋值
 function setData(data) {
-
     $("#infName").val(data.name);
     $("#infImg").val(data.imgHref);
     $("#infLink").val(data.infLink);

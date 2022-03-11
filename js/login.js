@@ -34,8 +34,8 @@ $(function () {
         });
     });
 });
-function register(){
-    window.location.href="../register.html"
+function rePassword(){
+    window.location.href="../rePassword.html"
 }
 
 function freshCode(obj) {
