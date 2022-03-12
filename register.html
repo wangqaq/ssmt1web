@@ -20,7 +20,8 @@
         <!--输入用户名-->
         <div class="layui-input-inline">
             <div class="layui-inline" style="width: 85%">
-                <input type="text" name="username" id="username" required  lay-verify="required" placeholder="用户名" autocomplete="off" class="layui-input">
+                <input type="text" name="username" id="username" required lay-verify="required" placeholder="用户名"
+                       autocomplete="off" class="layui-input">
             </div>
             <!--判断用户名是否可用的图标 -->
             <div class="layui-inline">
@@ -31,9 +32,26 @@
         <!--输入密码-->
         <div class="layui-input-inline">
             <div class="layui-inline" style="width: 85%">
-                <input type="password" name="password" id="password" required  lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input">
+                <input type="password" name="password" id="password" required lay-verify="required" placeholder="密码"
+                       autocomplete="off" class="layui-input">
             </div>
-
+        </div>
+        <div class="layui-input-inline">
+            <div class="layui-input-inline"style="width: 85%">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">请选择角色</label>
+                    <div class="layui-input-block">
+                        <select name="roleId" lay-verify="required" id="roleId">
+                            <option value=""></option>
+                            <option value="1">商品管理员</option>
+                            <option value="2">商品分类管理员</option>
+                            <option value="3">商品类型管理员</option>
+                            <option value="4">品牌管理员</option>
+                            <option value="5">全权管理员</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="layui-input-inline login-btn" style="width: 85%">
             <button type="submit" lay-submit lay-filter="sub" class="layui-btn" lay->注册</button>
@@ -45,16 +63,16 @@
     </form>
 </div>
 <script type="text/javascript">
-    layui.use(['form', 'layer','jquery'], function () {
-        var form  = layui.form;
-        var $  = layui.jquery;
-        form.on('submit(sub)',function () {
-            let i = myAjax("/api/user/register",{username:$('#uname').val(),password:$('#pwd').val()})
-                    if (i.code===0){
-                        layer.msg('注册成功')
-                    }else{
-                        layer.msg('注册失败')
-                    }
+    layui.use(['form', 'layer', 'jquery'], function () {
+        var form = layui.form;
+        var $ = layui.jquery;
+        form.on('submit(sub)', function () {
+            let i = myAjax("/api/user/register", {username: $('#uname').val(), password: $('#pwd').val()})
+            if (i.code === 0) {
+                layer.msg('注册成功')
+            } else {
+                layer.msg('注册失败')
+            }
 
             //防止页面跳转
             return false;
